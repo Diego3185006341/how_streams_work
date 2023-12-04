@@ -2,6 +2,7 @@ package org.Lambda;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -75,6 +76,7 @@ public class Main {
                 .sorted(byNameDesc)
                 .collect(Collectors.toList());
         ListMapper(personLista);*/
+
 
         //filter
         /*
@@ -174,7 +176,19 @@ public class Main {
         List<Employee> c = employees.stream().filter(as -> as.getName().contains("d"))
                 .collect(Collectors.toList());
         ListMapper(c);*/
+
+       String s1 = "cbaebabacd";
+       String s2 ="abc";
+
+       String t1 = "abab";
+       String t2 = "ab";
+
+
+        System.out.println(anagram(s1,s2));
+        System.out.println(anagram(t1,t2));
+
     }
+
 
     private static Employee employeeMapper(Person asd) {
 
@@ -185,7 +199,33 @@ public class Main {
                 .build();
     }
 
-    public  static void ListMapper(List<?> Ls){
+    private static List<?> anagram(String s1, String s2){
+
+        List<Integer> result = new ArrayList<>(); // Create an empty list to store the indices of the anagrams
+
+        if (s1 == null || s1.length() == 0 || s2 == null || s2.length() == 0){ // Check if either of the strings is empty
+            return result; // If either of them is empty, return an empty list
+        }
+
+        int plength = s2.length(); // Calculate the length of s2
+
+        int [] s2Freq = s2.chars().sorted().toArray(); // Sort the characters of s2 and store them in an array
+
+        for (int i = 0;  i <= s1.length() - plength; i++ ){ // Loop through each substring of s1 that has the same length as s2
+
+            int [] s1Freq = s1.substring(i,i +plength).chars().sorted().toArray(); // Sort the characters of the substring and store them in an array
+
+            if(Arrays.equals(s2Freq,s1Freq)){ // Compare the sorted characters of s2 with the sorted characters of the substring. If they are equal, it means that the substring is an anagram of s2
+
+                result.add(i); // Add the starting index of the substring to the result list
+
+            }
+
+        }
+        return result; // Return the result list which contains the indices of all the anagrams of s2 in s1
+    }
+
+    public static void ListMapper(List<?> Ls){
         Ls.forEach(System.out::print);
 
     }
