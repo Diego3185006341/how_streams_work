@@ -266,12 +266,10 @@ public class Main {
     }
     public static String PalindromeCreator(String str) {
         String originalString = str; // Store the original string
-
         // Check if the string is already a palindrome
         if (isPalindrome(str)) {
             return "palindrome";
         }
-
         // Minimum length for a palindrome after removing characters
         int minLength = 3;
 
