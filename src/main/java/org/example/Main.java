@@ -190,9 +190,11 @@ public class Main {
         //System.out.println(jason(jsonString));
 
         Scanner s = new Scanner(System.in);
-        System.out.print("inrese: ");
-        String inputString = s.nextLine();
-        System.out.println(PalindromeCreator(inputString));
+        //System.out.print("inrese: ");
+        //String inputString = s.nextLine();
+       // System.out.println(PalindromeCreator(inputString));
+        System.out.println(anagram("listen", "silent")); // true
+        System.out.println(anagram("hello", "world"));
 
 
     }
@@ -232,6 +234,19 @@ public class Main {
         }
         return result; // Return the result list which contains the indices of all the anagrams of s2 in s1
     }
+    public class AnagramCheck {
+        public static boolean areAnagrams(String str1, String str2) {
+            if (str1.length() != str2.length()) {
+                return false;
+            }
+            char[] arr1 = str1.toCharArray();
+            char[] arr2 = str2.toCharArray();
+            Arrays.sort(arr1);
+            Arrays.sort(arr2);
+            return Arrays.equals(arr1, arr2);
+        }
+    }
+
 
     public static String jason(String jsonString) throws JSONException {
         // Corrected JSON string
