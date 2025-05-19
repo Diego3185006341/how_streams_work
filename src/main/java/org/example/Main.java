@@ -199,9 +199,10 @@ public class Main {
         int[] array = {7, 3, 5, 1, 9};
         int[] array1 = {2, 4, 6, 8, 10,12};
 
+        List<Integer>S = new ArrayList<>(23);
         int [] mixArray = IntStream.concat(Arrays.stream(array), Arrays.stream(array1)).toArray();
 
-        System.out.println("Median: " + findMedian(array1));
+        System.out.println("Median: " + findMedian(array));
 
 
     }
