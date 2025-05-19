@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) throws JSONException {
@@ -193,10 +194,28 @@ public class Main {
         //System.out.print("inrese: ");
         //String inputString = s.nextLine();
        // System.out.println(PalindromeCreator(inputString));
-        System.out.println(anagram("listen", "silent")); // true
-        System.out.println(anagram("hello", "world"));
+       /* System.out.println(anagram("listen", "silent")); // true
+        System.out.println(anagram("hello", "world"));*/
+        int[] array = {7, 3, 5, 1, 9};
+        int[] array1 = {2, 4, 6, 8, 10,12};
+
+        int [] mixArray = IntStream.concat(Arrays.stream(array), Arrays.stream(array1)).toArray();
+
+        System.out.println("Median: " + findMedian(array1));
 
 
+    }
+    public static double findMedian(int[] arr) {
+        Arrays.sort(arr); // Step 1: Sort the array
+        int n = arr.length;
+
+        if (n % 2 == 1) { // Odd length
+            return arr[n / 2];
+        } else { // Even length
+            int mid1 = arr[n / 2 - 1];
+            int mid2 = arr[n / 2];
+            return (mid1 + mid2) / 2.0; // Convert to double for accurate division
+        }
     }
 
 
