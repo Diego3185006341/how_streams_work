@@ -202,10 +202,42 @@ public class Main {
         List<Integer>S = new ArrayList<>(23);
         int [] mixArray = IntStream.concat(Arrays.stream(array), Arrays.stream(array1)).toArray();
 
-        System.out.println("Median: " + findMedian(array));
-
+        //System.out.println("Median: " + findMedian(array));
+        System.out.println(findSecondNonRepeatedChar("swiss"));
 
     }
+
+
+
+    public static char findSecondNonRepeatedChar(String s) {
+        if (s == null || s.isEmpty()) {
+            return '0';
+        }
+
+        // Step 1: Count character frequencies while preserving insertion order
+        // LinkedHashMap is crucial here to maintain the order of character appearance
+        Map<Character, Integer> charCounts = new LinkedHashMap<>();
+        for (char c : s.toCharArray()) {
+            charCounts.put(c, charCounts.getOrDefault(c, 0) + 1);
+        }
+        // Example for "swiss": {s=3, w=1, i=1} - order is maintained
+
+        // Step 2 & 3: Iterate through the counts to find non-repeated characters in order
+        // and return the second one.
+        int nonRepeatedCount = 0;
+        for (Map.Entry<Character, Integer> entry : charCounts.entrySet()) {
+            if (entry.getValue() == 1) { // This character is non-repeated
+                nonRepeatedCount++;
+                if (nonRepeatedCount == 2) {
+                    return entry.getKey(); // Found the second one
+                }
+            }
+        }
+
+        // If we exit the loop, it means we found less than two non-repeated characters
+        return '0';
+    }
+
     public static double findMedian(int[] arr) {
         Arrays.sort(arr); // Step 1: Sort the array
         int n = arr.length;
