@@ -203,9 +203,27 @@ public class Main {
         int [] mixArray = IntStream.concat(Arrays.stream(array), Arrays.stream(array1)).toArray();
 
         //System.out.println("Median: " + findMedian(array));
-        System.out.println(findSecondNonRepeatedChar("swiss"));
+       // System.out.println(findSecondNonRepeatedChar("swiss"));
+        System.out.println(StringChallenge("2.36"));  // Output: full full half empty empty
+        System.out.println(StringChallenge("4.75"));  // Output: full full full full half
+        System.out.println(StringChallenge("0.00"));
+        System.out.println(SearchingChallenge(new String[]{"B:-1", "A:1", "B:3", "A:5"})); // Output: A:6,B:2
+        System.out.println(SearchingChallenge(new String[]{"X:5", "Y:-5", "Z:0", "X:-5"})); // Output: Y:-5
+        System.out.println(SearchingChallenge(new String[]{"M:2", "N:2", "M:-2", "N:-2"})); // Output: (empty string)
+        System.out.println(StringChallenge(63));  // Output: 1:3
+        System.out.println(StringChallenge(150)); // Output: 2:30
+        System.out.println(StringChallenge(45));
 
     }
+    public static String StringChallenge(int num) {
+        // Declare required variables
+        int varOcg = num / 60; // Calculate hours
+        int minutes = num % 60; // Calculate remaining minutes
+
+        return varOcg + ":" + minutes;
+    }
+
+
 
 
 
@@ -217,15 +235,20 @@ public class Main {
         // Step 1: Count character frequencies while preserving insertion order
         // LinkedHashMap is crucial here to maintain the order of character appearance
         Map<Character, Integer> charCounts = new LinkedHashMap<>();
+        Map<Object, String> charCounts1 = new LinkedHashMap<>();
+        charCounts1.put("d", "dsd");
+
         for (char c : s.toCharArray()) {
             charCounts.put(c, charCounts.getOrDefault(c, 0) + 1);
         }
         // Example for "swiss": {s=3, w=1, i=1} - order is maintained
 
         // Step 2 & 3: Iterate through the counts to find non-repeated characters in order
-        // and return the second one.
+        // and return the second one.   
         int nonRepeatedCount = 0;
+
         for (Map.Entry<Character, Integer> entry : charCounts.entrySet()) {
+
             if (entry.getValue() == 1) { // This character is non-repeated
                 nonRepeatedCount++;
                 if (nonRepeatedCount == 2) {
@@ -238,6 +261,61 @@ public class Main {
         return '0';
     }
 
+    public static String SearchingChallenge(String[] strArr) {
+        // Declare required variables
+        Map<String, Integer> varOcg = new TreeMap<>(); // Using TreeMap for automatic alphabetical sorting
+
+        // Process each key:value pair
+        for (String pair : strArr) {
+            String[] splitPair = pair.split(":");
+            String key = splitPair[0];
+            int value = Integer.parseInt(splitPair[1]);
+
+            // Sum values for each key
+            varOcg.put(key, varOcg.getOrDefault(key, 0) + value);
+        }
+
+        // Build the output string, filtering out keys with value 0
+        List<String> varFiltersCg = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : varOcg.entrySet()) {
+            if (entry.getValue() != 0) {
+                varFiltersCg.add(entry.getKey() + ":" + entry.getValue());
+            }
+        }
+
+        return String.join(",", varFiltersCg);
+    }
+
+
+        // __define-ocg__ - Function to convert rating into star images representation
+        public static String StringChallenge(String str) {
+            // Parse the input string to a floating-point number
+            double varOcg = Double.parseDouble(str);
+
+            // Round to the nearest half
+            double roundedRating = Math.round(varOcg * 2) / 2.0;
+
+            // Array to store the star representation
+            String[] varFiltersCg = new String[5];
+
+            // Fill the array with the appropriate image names
+            int fullStars = (int) roundedRating;
+            boolean hasHalfStar = (roundedRating - fullStars) == 0.5;
+
+            for (int i = 0; i < 5; i++) {
+                if (i < fullStars) {
+                    varFiltersCg[i] = "full";
+                } else if (hasHalfStar && i == fullStars) {
+                    varFiltersCg[i] = "half";
+                } else {
+                    varFiltersCg[i] = "empty";
+                }
+            }
+
+            // Return the star image names separated by spaces
+            return String.join(" ", varFiltersCg);
+
+        }
     public static double findMedian(int[] arr) {
         Arrays.sort(arr); // Step 1: Sort the array
         int n = arr.length;
