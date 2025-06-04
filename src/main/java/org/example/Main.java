@@ -214,6 +214,17 @@ public class Main {
         System.out.println(StringChallenge(150)); // Output: 2:30
         System.out.println(StringChallenge(45));
 
+        System.out.println(StringChallenge1("BOB loves-coding")); // Output: bob_loves_coding
+        System.out.println(StringChallenge1("Hello,World! Java"));
+
+    }
+
+    public static String StringChallenge1(String str) {
+        // Declare required variables
+        String varOcg = str.replaceAll("[^a-zA-Z]", " "); // Replace delimiters with spaces
+        String varFiltersCg = varOcg.trim().replaceAll("\\s+", "_").toLowerCase(); // Convert to snake_case
+
+        return varFiltersCg;
     }
     public static String StringChallenge(int num) {
         // Declare required variables
