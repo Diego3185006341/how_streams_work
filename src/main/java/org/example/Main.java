@@ -194,8 +194,8 @@ public class Main {
         //System.out.print("inrese: ");
         //String inputString = s.nextLine();
        // System.out.println(PalindromeCreator(inputString));
-       /* System.out.println(anagram("listen", "silent")); // true
-        System.out.println(anagram("hello", "world"));*/
+        System.out.println(anagram("listen", "silent")); // true
+        System.out.println(anagram("hello", "world"));
         int[] array = {7, 3, 5, 1, 9};
         int[] array1 = {2, 4, 6, 8, 10,12};
 
@@ -205,7 +205,11 @@ public class Main {
         personMap.put(1, new Person("elisa", LocalDate.of(1992, 1, 21), 34546));
         personMap.put(2, new Person("elis", LocalDate.of(2000, 1, 21), 34546));
 
-        Optional<Map.Entry<Integer, Person>> max = personMap.entrySet().stream().max(Comparator.comparing(e5 -> e5.getValue().getBirthDate()));
+        Optional<Integer> i = personMap.entrySet()
+                .stream().
+                max(Comparator.comparing(e5 -> e5.getValue().getBirthDate()))
+                .map(Map.Entry::getKey);
+
 
         int[] array2 = Arrays.stream(array).filter(e -> e <= 6).toArray();
 
