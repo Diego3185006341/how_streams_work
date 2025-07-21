@@ -204,19 +204,70 @@ public class Main {
 
         //System.out.println("Median: " + findMedian(array));
        // System.out.println(findSecondNonRepeatedChar("swiss"));
+        System.out.println(punishmentNumber(10));  // Output: full full half empty empty
         System.out.println(StringChallenge("2.36"));  // Output: full full half empty empty
         System.out.println(StringChallenge("4.75"));  // Output: full full full full half
         System.out.println(StringChallenge("0.00"));
-        System.out.println(SearchingChallenge(new String[]{"B:-1", "A:1", "B:3", "A:5"})); // Output: A:6,B:2
+      /*  System.out.println(SearchingChallenge(new String[]{"B:-1", "A:1", "B:3", "A:5"})); // Output: A:6,B:2
         System.out.println(SearchingChallenge(new String[]{"X:5", "Y:-5", "Z:0", "X:-5"})); // Output: Y:-5
         System.out.println(SearchingChallenge(new String[]{"M:2", "N:2", "M:-2", "N:-2"})); // Output: (empty string)
+
+        /*
         System.out.println(StringChallenge(63));  // Output: 1:3
         System.out.println(StringChallenge(150)); // Output: 2:30
-        System.out.println(StringChallenge(45));
+        System.out.println(StringChallenge(45));*/
 
-        System.out.println(StringChallenge1("BOB loves-coding")); // Output: bob_loves_coding
-        System.out.println(StringChallenge1("Hello,World! Java"));
+       /* System.out.println(StringChallenge1("BOB loves-coding")); // Output: bob_loves_coding
+        System.out.println(StringChallenge1("Hello,World! Java"));*/
 
+    }
+
+
+    public  static int punishmentNumber(int n) {
+        int total = 0;
+
+        for (int i = 1; i <= n; i++) {
+            int square = i * i;
+            String str = String.valueOf(square);
+
+            if (canPartition(str, 0, i)) {
+                total += square;
+            }
+        }
+
+        return total;
+    }
+    private static boolean canPartition(String s, int index, int target) {
+        if (index == s.length()) {
+            return target == 0;
+        }
+
+        for (int j = index + 1; j <= s.length(); j++) {
+            int part = Integer.parseInt(s.substring(index, j));
+            if (part <= target && canPartition(s, j, target - part)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int val) {
+            this.val = val;
+        }
+    }
+    class Solution {
+        public int getDecimalValue(ListNode head) {
+            int num = 0;
+            while (head != null) {
+                num = (num << 1) | head.val;
+                head = head.next;
+            }
+            return num;
+        }
     }
 
     public static String StringChallenge1(String str) {
@@ -303,6 +354,8 @@ public class Main {
             // Parse the input string to a floating-point number
             double varOcg = Double.parseDouble(str);
 
+            Map<String,String> stringStringMap = new HashMap<>();
+            TreeMap<Integer, String> integerStringTreeMap = new TreeMap<>();
             // Round to the nearest half
             double roundedRating = Math.round(varOcg * 2) / 2.0;
 
