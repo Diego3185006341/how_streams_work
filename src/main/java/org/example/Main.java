@@ -194,18 +194,38 @@ public class Main {
         //System.out.print("inrese: ");
         //String inputString = s.nextLine();
        // System.out.println(PalindromeCreator(inputString));
-       /* System.out.println(anagram("listen", "silent")); // true
-        System.out.println(anagram("hello", "world"));*/
+        System.out.println(anagram("listen", "silent")); // true
+        System.out.println(anagram("hello", "world"));
         int[] array = {7, 3, 5, 1, 9};
         int[] array1 = {2, 4, 6, 8, 10,12};
 
+        TreeMap<Integer, Person> personMap = new TreeMap<>();
+
+        personMap.put(3, new Person("elis", LocalDate.of(1991, 1, 21), 34546));
+        personMap.put(1, new Person("elisa", LocalDate.of(1992, 1, 21), 34546));
+        personMap.put(2, new Person("elis", LocalDate.of(2000, 1, 21), 34546));
+
+        Optional<Integer> i = personMap.entrySet()
+                .stream().
+                max(Comparator.comparing(e5 -> e5.getValue().getBirthDate()))
+                .map(Map.Entry::getKey);
+
+
+        int[] array2 = Arrays.stream(array).filter(e -> e <= 6).toArray();
+
         List<Integer>S = new ArrayList<>(23);
         int [] mixArray = IntStream.concat(Arrays.stream(array), Arrays.stream(array1)).toArray();
+        System.out.println(StringChallenge(45));
+
+        System.out.println(StringChallenge1("BOB loves-coding")); // Output: bob_loves_coding
+        System.out.println(StringChallenge1("Hello,World! Java"));
+        System.out.println(Arrays.toString(array2));
 
         //System.out.println("Median: " + findMedian(array));
        // System.out.println(findSecondNonRepeatedChar("swiss"));
         System.out.println(punishmentNumber(10));  // Output: full full half empty empty
         System.out.println(StringChallenge("2.36"));  // Output: full full half empty empty
+       /* System.out.println(StringChallenge("2.36"));  // Output: full full half empty empty
         System.out.println(StringChallenge("4.75"));  // Output: full full full full half
         System.out.println(StringChallenge("0.00"));
       /*  System.out.println(SearchingChallenge(new String[]{"B:-1", "A:1", "B:3", "A:5"})); // Output: A:6,B:2
