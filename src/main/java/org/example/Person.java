@@ -14,4 +14,5 @@ public class Person {
     String name;
     private LocalDate birthDate;
     double salary;
+    String gender;
 }
