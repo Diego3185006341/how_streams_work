@@ -216,6 +216,11 @@ public class Main {
         List<Integer>S = new ArrayList<>(23);
         int [] mixArray = IntStream.concat(Arrays.stream(array), Arrays.stream(array1)).toArray();
 
+        int[] nums = {2, 7, 11, 15};
+        int target = 9;
+
+
+        System.out.println(twoSum(nums, target));
         //System.out.println("Median: " + findMedian(array));
        // System.out.println(findSecondNonRepeatedChar("swiss"));
        /* System.out.println(StringChallenge("2.36"));  // Output: full full half empty empty
@@ -484,6 +489,32 @@ public class Main {
         }
         return true;
     }
+
+    public static boolean isItPalidrome(String str){
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(str);
+        return str.contentEquals(stringBuilder.reverse());
+
+
+
+    }
+    public static int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+
+            if (map.containsKey(complement)) {
+                return new int[]{map.get(complement), i};
+            }
+
+            map.put(nums[i], i);
+        }
+
+        throw new IllegalArgumentException("No two sum solution");
+    }
+
+
 
 
 
