@@ -13,11 +13,14 @@ public class Main2 {
 
        // System.out.println(possibleExeption(-1));
 
-        for(int i = 0; i < 10; i++){
-            System.out.println(fibonachi(i));
-        }
-
-
+//        for(int i = 0; i < 10; i++){
+//            System.out.println(fibonachi(i));
+//        }
+//        int[] nums = {2, 7, 11, 15};
+//        int target = 9;
+//        System.out.println(Arrays.toString(twoSum(nums, target)));
+        int[] nums = {10, 20, 30, 40};
+        System.out.println(median(nums));
 
     }
 
@@ -39,12 +42,23 @@ public class Main2 {
        return  String.valueOf(number);
 
     }
-    public static int median(int [] list){
-
+    public static double median(int [] list){
+        Arrays.sort(list);
         int length = list.length;
-        
+        int meadian1 = 0;
+        int meadian2 = 0;
 
-        return list[ length / 2];
+
+        if(length % 2 == 0) {
+            meadian1 = list[length / 2 - 1];
+            meadian2 = list[length / 2];
+            return (meadian1 + meadian2) / 2.0;
+        }
+
+        else{
+            return list[ length / 2];
+        }
+
 
 
     }
@@ -71,7 +85,20 @@ public class Main2 {
 
 
 
+    public static int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
 
+            if (map.containsKey(complement)) {
+                return new int[]{map.get(complement), i};
+            }
+
+            map.put(nums[i], i);
+        }
+
+        throw new IllegalArgumentException("No two sum solution");
+    }
 
 
 
