@@ -3,6 +3,7 @@ package org.example;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.module.Configuration;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
@@ -10,11 +11,11 @@ import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) throws JSONException {
-        Person p1 = new Person("elis", LocalDate.of(1991, 1, 21), 34546);
+       /* Person p1 = new Person("elis", LocalDate.of(1991, 1, 21), 34546);
         Person p2 = new Person("carlos ", LocalDate.of(1995, 2, 11), 64546);
         Person p3 = new Person("albert ", LocalDate.of(2000, 1, 06), 78453);
         Person p4 = new Person("chavo ", LocalDate.of(2005, 11, 06), 78453);
-        Person p5 = new Person("penelope ", LocalDate.of(2010, 10, 06), 78453);
+        Person p5 = new Person("penelope ", LocalDate.of(2010, 10, 06), 78453);*/
 
         Employee e1 = new Employee("alfed", LocalDate.of(1990, 1, 7), 34546);
         Employee e2 = new Employee("dino ", LocalDate.of(1980, 2, 7), 64546);
@@ -26,7 +27,7 @@ public class Main {
         Products pr4 = new Products(4, "Ceviche", 15.0);
 
 
-        List<Person> persons = Arrays.asList(p1, p2, p3, p4, p5);
+      //  List<Person> persons = Arrays.asList(p1, p2, p3, p4, p5);
         List<Employee> employees = Arrays.asList(e1, e2, e3);
         List<Products> products = Arrays.asList(pr1, pr2, pr3, pr4);
 
@@ -194,18 +195,18 @@ public class Main {
         //System.out.print("inrese: ");
         //String inputString = s.nextLine();
        // System.out.println(PalindromeCreator(inputString));
-        System.out.println(anagram("listen", "silent")); // true
-        System.out.println(anagram("hello", "world"));
+      /*  System.out.println(anagram("listen", "silent")); // true
+        System.out.println(anagram("hello", "world"));*/
         int[] array = {7, 3, 5, 1, 9};
         int[] array1 = {2, 4, 6, 8, 10,12};
 
         TreeMap<Integer, Person> personMap = new TreeMap<>();
 
-        personMap.put(3, new Person("elis", LocalDate.of(1991, 1, 21), 34546));
+      /*  personMap.put(3, new Person("elis", LocalDate.of(1991, 1, 21), 34546));
         personMap.put(1, new Person("elisa", LocalDate.of(1992, 1, 21), 34546));
-        personMap.put(2, new Person("elis", LocalDate.of(2000, 1, 21), 34546));
+        personMap.put(2, new Person("elis", LocalDate.of(2000, 1, 21), 34546));*/
 
-        Optional<Integer> i = personMap.entrySet()
+        Optional<Integer> ia = personMap.entrySet()
                 .stream().
                 max(Comparator.comparing(e5 -> e5.getValue().getBirthDate()))
                 .map(Map.Entry::getKey);
@@ -214,7 +215,16 @@ public class Main {
         int[] array2 = Arrays.stream(array).filter(e -> e <= 6).toArray();
 
         List<Integer>S = new ArrayList<>(23);
+        List<Integer>SANY = new LinkedList<>();
+
         int [] mixArray = IntStream.concat(Arrays.stream(array), Arrays.stream(array1)).toArray();
+      //  System.out.println(StringChallenge(45));
+
+        int [] number = { 0,1,2,3};
+
+      /*  System.out.println(StringChallenge1("BOB loves-coding")); // Output: bob_loves_coding
+        System.out.println(StringChallenge1("Hello,World! Java"));*/
+      //  System.out.println(Arrays.toString(array2));
 
         int[] nums = {2, 7, 11, 15};
         int target = 9;
@@ -223,20 +233,155 @@ public class Main {
         System.out.println(twoSum(nums, target));
         //System.out.println("Median: " + findMedian(array));
        // System.out.println(findSecondNonRepeatedChar("swiss"));
+       // System.out.println(punishmentNumber(10));  // Output: full full half empty empty
+       // System.out.println(StringChallenge("2.36"));  // Output: full full half empty empty
+        for (int i = 0; i < 10; i++) {
+            System.out.print(fibonacci(i) + " ");
+        }
+
+        System.out.println(fibonachi(number));  // Output: full full half empty empty
+        System.out.println(vowel("swissaa"));  // Output: full full half empty empty
+        System.out.println(nonSpace("hellow eord"));
+        System.out.println(reverseWord("hellow eord"));
+
+        // Output: full full half empty empty
+
+       // System.out.println(ifCondition(new Person("Carlos", )));  // Output: full full half empty empty
        /* System.out.println(StringChallenge("2.36"));  // Output: full full half empty empty
         System.out.println(StringChallenge("4.75"));  // Output: full full full full half
         System.out.println(StringChallenge("0.00"));
-        System.out.println(SearchingChallenge(new String[]{"B:-1", "A:1", "B:3", "A:5"})); // Output: A:6,B:2
+      /*  System.out.println(SearchingChallenge(new String[]{"B:-1", "A:1", "B:3", "A:5"})); // Output: A:6,B:2
         System.out.println(SearchingChallenge(new String[]{"X:5", "Y:-5", "Z:0", "X:-5"})); // Output: Y:-5
         System.out.println(SearchingChallenge(new String[]{"M:2", "N:2", "M:-2", "N:-2"})); // Output: (empty string)
+
+
+        */
+
+        /*
         System.out.println(StringChallenge(63));  // Output: 1:3
         System.out.println(StringChallenge(150)); // Output: 2:30
         System.out.println(StringChallenge(45));*/
 
-        System.out.println(StringChallenge1("BOB loves-coding")); // Output: bob_loves_coding
-        System.out.println(StringChallenge1("Hello,World! Java"));
-        System.out.println(Arrays.toString(array2));
+       /* System.out.println(StringChallenge1("BOB loves-coding")); // Output: bob_loves_coding
+        System.out.println(StringChallenge1("Hello,World! Java"));*/
 
+    }
+
+    public static StringBuilder reverseWord(String word){
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(word);
+
+       return sb.reverse();
+
+
+
+    }
+
+
+    public static int fibonacci(int n) {
+        if (n <= 1) {
+            return n;
+        }
+
+        int a = 0; // F(0)
+        int b = 1; // F(1)
+
+        for (int i = 2; i <= n; i++) {
+            int next = a + b;
+            a = b;
+            b = next;
+        }
+
+        return b;
+    }
+
+
+    public static int fibonachi(int[] list ){
+        int result = 0;
+        for(int i = 1 ; i< list.length; i ++){
+            result =+i;
+        }
+        return result;
+
+    }
+
+
+
+    public static String ifCondition(Person para){
+        String result = "";
+        String identity ="";
+        List<Integer> da = Arrays.asList(23,34);
+        if(para.gender.equals("man")){
+
+            if(para.salary > 1000){
+
+                result = "aceptable";
+
+            }
+
+
+        }
+
+        switch (para.gender){
+            case "male":
+                identity = "hombre";
+                break;
+            default:
+                identity= "persona";
+
+        }
+        return result;
+
+    }
+
+
+    public  static int punishmentNumber(int n) {
+        int total = 0;
+
+        for (int i = 1; i <= n; i++) {
+            int square = i * i;
+            String str = String.valueOf(square);
+
+            if (canPartition(str, 0, i)) {
+                total += square;
+            }
+        }
+
+        return total;
+    }
+    private static boolean canPartition(String s, int index, int target) {
+        if (index == s.length()) {
+            return target == 0;
+        }
+
+        for (int j = index + 1; j <= s.length(); j++) {
+            int part = Integer.parseInt(s.substring(index, j));
+            if (part <= target && canPartition(s, j, target - part)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int val) {
+            this.val = val;
+        }
+    }
+    class Solution {
+        public int getDecimalValue(ListNode head) {
+            int num = 0;
+            while (head != null) {
+                num = (num << 1) | head.val;
+                head = head.next;
+            }
+            return num;
+        }
     }
 
     public static String StringChallenge1(String str) {
@@ -275,7 +420,7 @@ public class Main {
         // Example for "swiss": {s=3, w=1, i=1} - order is maintained
 
         // Step 2 & 3: Iterate through the counts to find non-repeated characters in order
-        // and return the second one.
+        // and return the second one.   
         int nonRepeatedCount = 0;
 
         for (Map.Entry<Character, Integer> entry : charCounts.entrySet()) {
@@ -291,6 +436,35 @@ public class Main {
         // If we exit the loop, it means we found less than two non-repeated characters
         return '0';
     }
+
+    public static String vowel(String word){
+        Map<Character, Integer> vowel = new HashMap<>();
+        Map<Character, Integer> consonants = new HashMap<>();
+        List<String> response = new ArrayList<>();
+
+        for(char charWord : word.toCharArray()){
+            switch (charWord){
+                case 'a': case 'e': case 'i': case 'o': case 'u':
+                    vowel.put(charWord, vowel.getOrDefault(charWord, 0) + 1);
+                    break;
+                default:
+                    String s = "no variable";
+            }
+        }
+
+        for (Map.Entry<Character, Integer> entry : vowel.entrySet()){
+            response.add("vowel: " + entry.getKey() + " times: " + entry.getValue());
+        }
+
+        return String.join(",", response);
+    }
+
+    public static String nonSpace(String word){
+
+        return word.replaceAll(" ", "");
+
+    }
+
 
     public static String SearchingChallenge(String[] strArr) {
         // Declare required variables
@@ -323,6 +497,8 @@ public class Main {
             // Parse the input string to a floating-point number
             double varOcg = Double.parseDouble(str);
 
+            Map<String,String> stringStringMap = new HashMap<>();
+            TreeMap<Integer, String> integerStringTreeMap = new TreeMap<>();
             // Round to the nearest half
             double roundedRating = Math.round(varOcg * 2) / 2.0;
 
