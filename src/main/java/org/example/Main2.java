@@ -1,9 +1,7 @@
 package org.example;
 
-import javax.naming.LinkException;
 import java.util.*;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Main2 {
 
@@ -16,11 +14,15 @@ public class Main2 {
 //        for(int i = 0; i < 10; i++){
 //            System.out.println(fibonachi(i));
 //        }
-//        int[] nums = {2, 7, 11, 15};
-//        int target = 9;
-//        System.out.println(Arrays.toString(twoSum(nums, target)));
-        int[] nums = {10, 20, 30, 40};
-        System.out.println(median(nums));
+       int[] nums = {2, 7, 11, 15};
+       int target = 9;
+      System.out.println(Arrays.toString(twoSum(nums, target)));
+      System.out.println(replace("hello e"));
+      System.out.println(removeDuplicated(new int[]{34,34,45}));
+      System.out.println(wordsInString("hello great question"));
+      System.out.println(digits(453456));
+       // int[] nums = {10, 20, 30, 40};
+       // System.out.println(median(nums));
 
     }
 
@@ -99,6 +101,57 @@ public class Main2 {
 
         throw new IllegalArgumentException("No two sum solution");
     }
+
+    public static String replace(String word){
+
+        return word.replace(" ","");
+
+    }
+
+    public static boolean isPalidrome(String word){
+       StringBuilder stringBuffer = new StringBuilder();
+       stringBuffer.append(word);
+
+       return word.contentEquals(stringBuffer.reverse());
+
+
+    }
+
+    public static boolean isPalidrome(int word){
+        StringBuilder stringBuffer = new StringBuilder();
+        stringBuffer.append(word);
+        String wordString  = String.valueOf(word);
+
+        return wordString.contentEquals(stringBuffer.reverse());
+
+
+    }
+
+    public static Set<Integer> removeDuplicated(int [] word){
+
+        Set<Integer> gf = new HashSet<>();
+        for (int wordTo : word){
+
+            gf.add(wordTo);
+        }
+        return gf;
+
+    }
+    public static Map<String, Integer> wordsInString(String words){
+        Map<String, Integer> map = new TreeMap<>();
+
+
+        for (String word : words.split("\\W+"))
+            map.put(word, map.getOrDefault( word, 0)+ 1);
+
+        return map;
+    }
+
+    public static int digits(int digits){
+        return String.valueOf(Math.abs(digits)).length();
+
+    }
+
 
 
 
