@@ -42,13 +42,13 @@ public class Main2 {
 
         executorService.awaitTermination(1, TimeUnit.SECONDS);
 
-        executorService.shutdown();
-        System.out.println(orders);
-        MyTask t1 = new MyTask("Thread A");
-        MyTask t2 = new MyTask("Thread B");
-
-        t1.start(); // starts Thread A
-        t2.start(); // starts Thread B
+//        executorService.shutdown();
+//        System.out.println(orders);
+//        MyTask t1 = new MyTask("Thread A");
+//        MyTask t2 = new MyTask("Thread B");
+//
+//        t1.start(); // starts Thread A
+//        t2.start(); // starts Thread B
 
 
 //        }
@@ -58,9 +58,9 @@ public class Main2 {
 //      System.out.println(replace("hello e"));
 //      System.out.println(removeDuplicated(new int[]{34,34,45}));
 //      System.out.println(wordsInString("hello great question"));
-      System.out.println(digits(453456));
-      System.out.println(primenumber(7));
-      System.out.println(divisors(7));
+//      System.out.println(digits(453456));
+//      System.out.println(primenumber(7));
+//      System.out.println(divisors(7));
        // int[] nums = {10, 20, 30, 40};
        // System.out.println(median(nums));
 
@@ -110,7 +110,7 @@ public class Main2 {
     public  static int fibonachi(int tems){
 
         int a = 0, b = 1;
-        ;
+
         for(int i = 0; i < tems; i++){
 
             int next = a + b;
