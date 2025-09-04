@@ -1,5 +1,21 @@
-# .gitignore
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# Build directories
 target/
 out/
 build/
-*.classgit status
+
+# IDE-specific files (optional but recommended)
+*.iml
+.idea/
+*.swp
+*.swo
+*.bak
+
+# OS-specific files
+.DS_Store
+Thumbs.db

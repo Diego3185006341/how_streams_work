@@ -60,6 +60,7 @@ public class Main2 {
 //      System.out.println(wordsInString("hello great question"));
       System.out.println(digits(453456));
       System.out.println(primenumber(7));
+      System.out.println(divisors(7));
        // int[] nums = {10, 20, 30, 40};
        // System.out.println(median(nums));
 
@@ -196,14 +197,25 @@ public class Main2 {
     public static boolean primenumber(int number){
 
         if(number <= 1) return false;
-        if(number == 2) return true;
-        for(int i = 3; i < number; i++){
+
+        for(int i = 2; i < number; i++){
 
             if(number % i == 0) return false;
 
 
         }
         return true;
+
+    }
+
+    public static List<Integer> divisors(int number){
+        List<Integer> integers = new ArrayList<>();
+        for(int i = 1;i <= number;i ++)
+            if(number % i == 0)
+                integers.add(i);
+
+
+        return integers;
 
     }
 
