@@ -14,7 +14,7 @@ public class Main2 {
         for (String city : orders.keySet()){
             for (int i = 0 ; i < 50; i ++){
                 Long oldOrder = orders.get(city);
-                orders.put(city, oldOrder + 1);
+                orders.compute(city, (k, v) -> v + 1);
             }
 
         }
@@ -36,6 +36,7 @@ public class Main2 {
         executorService.submit(Main2::processOrders);
         executorService.submit(Main2::processOrders);
         executorService.submit(Main2::processOrders);
+        executorService.submit(Main2::processOrders);
 
 
 
@@ -43,6 +44,12 @@ public class Main2 {
 
         executorService.shutdown();
         System.out.println(orders);
+        MyTask t1 = new MyTask("Thread A");
+        MyTask t2 = new MyTask("Thread B");
+
+        t1.start(); // starts Thread A
+        t2.start(); // starts Thread B
+
 
 //        }
        int[] nums = {2, 7, 11, 15};
