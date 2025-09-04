@@ -1,25 +1,56 @@
 package org.example;
 
 import java.util.*;
+import java.util.concurrent.*;
 import java.util.stream.IntStream;
 
 public class Main2 {
 
     private static ExpetionClass expetionClass;
-    public static void main(String [] args) throws ExpetionClass {
+
+    static Map<String, Long> orders = new ConcurrentHashMap<>();
+
+    static void processOrders() {
+        for (String city : orders.keySet()){
+            for (int i = 0 ; i < 50; i ++){
+                Long oldOrder = orders.get(city);
+                orders.put(city, oldOrder + 1);
+            }
+
+        }
+    }
+    public static void main(String [] args) throws ExpetionClass, InterruptedException {
 
 
        // System.out.println(possibleExeption(-1));
 
 //        for(int i = 0; i < 10; i++){
 //            System.out.println(fibonachi(i));
+        orders.put("Bogota", 0l);
+        orders.put("Cartagena", 0l);
+        orders.put("Cali", 0l);
+        orders.put("Medellin", 0l);
+
+        ExecutorService executorService = Executors.newFixedThreadPool(3);
+
+        executorService.submit(Main2::processOrders);
+        executorService.submit(Main2::processOrders);
+        executorService.submit(Main2::processOrders);
+
+
+
+        executorService.awaitTermination(1, TimeUnit.SECONDS);
+
+        executorService.shutdown();
+        System.out.println(orders);
+
 //        }
        int[] nums = {2, 7, 11, 15};
        int target = 9;
-      System.out.println(Arrays.toString(twoSum(nums, target)));
-      System.out.println(replace("hello e"));
-      System.out.println(removeDuplicated(new int[]{34,34,45}));
-      System.out.println(wordsInString("hello great question"));
+//      System.out.println(Arrays.toString(twoSum(nums, target)));
+//      System.out.println(replace("hello e"));
+//      System.out.println(removeDuplicated(new int[]{34,34,45}));
+//      System.out.println(wordsInString("hello great question"));
       System.out.println(digits(453456));
        // int[] nums = {10, 20, 30, 40};
        // System.out.println(median(nums));
@@ -29,8 +60,10 @@ public class Main2 {
     public  static String possibleExeption(int number) throws ExpetionClass {
 
 
-        int s [] ={34};
+        int s [] ={34,35};
         int i [] ={34};
+
+        OptionalInt max = Arrays.stream(s).max();
 
 
         int r [] = IntStream.concat(Arrays.stream(s), Arrays.stream(i)).toArray();
@@ -117,7 +150,7 @@ public class Main2 {
 
     }
 
-    public static boolean isPalidrome(int word){
+    public static  boolean isPalidrome(int word){
         StringBuilder stringBuffer = new StringBuilder();
         stringBuffer.append(word);
         String wordString  = String.valueOf(word);
@@ -137,7 +170,7 @@ public class Main2 {
         return gf;
 
     }
-    public static Map<String, Integer> wordsInString(String words){
+    public static Map<?, ?> wordsInString(String words){
         Map<String, Integer> map = new TreeMap<>();
 
 
