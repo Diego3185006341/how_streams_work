@@ -52,6 +52,8 @@ public class Main2 {
 
 
 //        }
+//        System.out.println(isArmstrong(12));
+
        int[] nums = {2, 7, 11, 15};
        int target = 9;
 //      System.out.println(Arrays.toString(twoSum(nums, target)));
@@ -217,6 +219,24 @@ public class Main2 {
 
         return integers;
 
+    }
+
+    public static boolean isArmstrong(int num) {
+        int original = num;
+        int sum = 0;
+
+        // Step 1: count digits
+        int digits = String.valueOf(num).length();
+
+        // Step 2: process each digit
+        while (num > 0) {
+            int digit = num % 10;              // get last digit
+            sum += Math.pow(digit, digits);    // raise it to power
+            num /= 10;                         // remove last digit
+        }
+
+        // Step 3: check
+        return sum == original;
     }
 
 
