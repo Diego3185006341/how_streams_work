@@ -22,7 +22,8 @@ public class Main2 {
     public static void main(String [] args) throws ExpetionClass, InterruptedException {
 
 
-       // System.out.println(possibleExeption(-1));
+        //System.out.println(possibleExeption(-1));
+        System.out.println(secondNonRepited("asswsdff"));
 
 //        for(int i = 0; i < 10; i++){
 //            System.out.println(fibonachi(i));
@@ -81,8 +82,7 @@ public class Main2 {
 
         if (number < 0){
 
-            throw new ExpetionClass("negative number");
-
+            throw new NumberFormatException("no correct number");
         }
 
        return  String.valueOf(number);
@@ -237,6 +237,28 @@ public class Main2 {
 
         // Step 3: check
         return sum == original;
+    }
+
+    public static List<String> secondNonRepited(String word){
+
+        Map<Character, Integer>  map = new HashMap<>();
+        List<String> list = new ArrayList<>();
+        int counter = 0;
+        for(char w : word.toCharArray()){
+            map.put(w, map.getOrDefault(w, 0) +1);
+
+        }
+        for (var entry : map.entrySet()){
+            if (entry.getValue() == 1){
+                counter ++;
+            }
+            if(counter == 2){
+                list.add("number: " + entry.getKey() + "times:" + entry.getValue());
+            }
+        }
+        return list;
+
+
     }
 
 
