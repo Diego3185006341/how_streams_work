@@ -25,6 +25,16 @@ public class Main2 {
         //System.out.println(possibleExeption(-1));
         System.out.println(secondNonRepited("asswsdff"));
 
+        int nbPersons = 3;
+
+        List<String> ingredients = Arrays.asList(
+                "2 eggs",
+                "1 tomato",
+                "100 rice",
+                "50 chicken"
+        );
+        System.out.println(adjustQuantities(nbPersons, ingredients));
+
 //        for(int i = 0; i < 10; i++){
 //            System.out.println(fibonachi(i));
         orders.put("Bogota", 0l);
@@ -239,7 +249,7 @@ public class Main2 {
         return sum == original;
     }
 
-    public static List<String> secondNonRepited(String word){
+    public static char secondNonRepited(String word){
 
         Map<Character, Integer>  map = new HashMap<>();
         List<String> list = new ArrayList<>();
@@ -253,12 +263,42 @@ public class Main2 {
                 counter ++;
             }
             if(counter == 2){
-                list.add("number: " + entry.getKey() + "times:" + entry.getValue());
+                return entry.getKey();
             }
         }
-        return list;
+        return '0';
 
 
+    }
+    public static List<String> adjustQuantities(int nbPersons, List<String> ingredients) {
+        // Create a new list to store the adjusted ingredients.
+        List<String> adjustedIngredients = new ArrayList<>();
+
+        // Iterate over each ingredient string in the provided list.
+        for (String ingredient : ingredients) {
+            // Find the position of the first space, which separates the quantity from the name.
+            int firstSpaceIndex = ingredient.indexOf(" ");
+
+            // Extract the quantity part of the string.
+            String quantityStr = ingredient.substring(0, firstSpaceIndex);
+            // Extract the name part of the string.
+            String name = ingredient.substring(firstSpaceIndex + 1);
+
+            // Parse the quantity string into an integer.
+            int quantity = Integer.parseInt(quantityStr);
+
+            // Calculate the new quantity by multiplying it by the number of people.
+            int newQuantity = quantity * nbPersons;
+
+            // Create the new ingredient string with the adjusted quantity.
+            String newIngredient = newQuantity + " " + name;
+
+            // Add the new ingredient string to our list.
+            adjustedIngredients.add(newIngredient);
+        }
+
+        // Return the list of adjusted ingredients.
+        return adjustedIngredients;
     }
 
 
