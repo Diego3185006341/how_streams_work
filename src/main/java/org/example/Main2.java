@@ -76,6 +76,7 @@ public class Main2 {
 //      System.out.println(divisors(7));
        // int[] nums = {10, 20, 30, 40};
        // System.out.println(median(nums));
+        System.out.println(howManyWords(2,"bad", new String[]{"The_video_is_BAD", "BAD_bad_bad"}));
 
     }
 
@@ -300,10 +301,38 @@ public class Main2 {
         // Return the list of adjusted ingredients.
         return adjustedIngredients;
     }
+    public static int howManyWords(int N, String word, String[] comments){
+        int result = 0;
+
+
+
+        String keyWord = word.toLowerCase();
+
+        for (int i = 0; i < N; i++){
+            String lowerCase = comments[i].toLowerCase();
+
+            String[] howMany = lowerCase.split("_");
+            for (String wordY : howMany){
+                if (wordY.contains(keyWord)) {
+                    result++;
+                }
+
+            }
+
+        }
+
+        return result;
+        }
+
+
+
+
+
+    }
 
 
 
 
 
 
-}
+
