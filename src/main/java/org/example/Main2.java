@@ -3,6 +3,7 @@ package org.example;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Main2 {
 
@@ -78,6 +79,7 @@ public class Main2 {
        // System.out.println(median(nums));
         System.out.println(howManyWords(2,"bad", new String[]{"The_video_is_BAD", "BAD_bad_bad"}));
 
+        System.out.println(largerstString( new String[]{"SDF","DF"}));
     }
 
     public  static String possibleExeption(int number) throws ExpetionClass {
@@ -322,6 +324,13 @@ public class Main2 {
         }
 
         return result;
+        }
+
+        public static String largerstString(String[] name){
+
+
+            return Arrays.stream(name).max(Comparator.comparing(String::length)).orElse("df");
+
         }
 
 
