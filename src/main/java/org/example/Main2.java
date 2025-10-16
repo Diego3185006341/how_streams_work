@@ -77,9 +77,11 @@ public class Main2 {
 //      System.out.println(divisors(7));
        // int[] nums = {10, 20, 30, 40};
        // System.out.println(median(nums));
+
         System.out.println(howManyWords(2,"bad", new String[]{"The_video_is_BAD", "BAD_bad_bad"}));
 
         System.out.println(largerstString( new String[]{"SDF","DF"}));
+        System.out.println(swap());
     }
 
     public  static String possibleExeption(int number) throws ExpetionClass {
@@ -332,6 +334,54 @@ public class Main2 {
             return Arrays.stream(name).max(Comparator.comparing(String::length)).orElse("df");
 
         }
+
+        public static long factorial(int n){
+
+        long result = 1;
+
+        if(n < 0) throw  new IllegalArgumentException();
+
+
+
+        for (int i = 2; i <= n; i++)
+            result *= i;
+
+        return result;
+        }
+
+        public static String swap(){
+        int a = 5, b = 10;
+        int temp = a;
+
+        a = b;
+        b = temp;
+
+
+
+
+        return  "a :" + a + " b: " + b;
+
+        }
+        public static int vowels(String word){
+
+        int count = 0 ;
+        Set<Character> set = Set.of('a', 'e','i','o','u');
+
+        for (char c : word.toLowerCase().toCharArray()){
+            if(set.contains(c)){
+                count++;
+
+            }
+
+
+        }
+
+            return count;
+
+        }
+
+
+
 
 
 
