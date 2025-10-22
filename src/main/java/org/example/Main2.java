@@ -24,7 +24,9 @@ public class Main2 {
 
 
         //System.out.println(possibleExeption(-1));
-        System.out.println(secondNonRepited("asswsdff"));
+//        System.out.println(secondNonRepited("asswsdff"));
+     System.out.println(groupAnagrams(new String[]{"eat", "tea", "tan", "ate", "nat", "bat"}));
+//        System.out.println(compress(new char[]{'a', 'a', 'b', 'b', 'c', 'c', 'c'}));
 
         int nbPersons = 3;
 
@@ -34,7 +36,7 @@ public class Main2 {
                 "100 rice",
                 "50 chicken"
         );
-        System.out.println(adjustQuantities(nbPersons, ingredients));
+//        System.out.println(adjustQuantities(nbPersons, ingredients));
 
 //        for(int i = 0; i < 10; i++){
 //            System.out.println(fibonachi(i));
@@ -78,10 +80,10 @@ public class Main2 {
        // int[] nums = {10, 20, 30, 40};
        // System.out.println(median(nums));
 
-        System.out.println(howManyWords(2,"bad", new String[]{"The_video_is_BAD", "BAD_bad_bad"}));
-
-        System.out.println(largerstString( new String[]{"SDF","DF"}));
-        System.out.println(swap());
+//        System.out.println(howManyWords(2,"bad", new String[]{"The_video_is_BAD", "BAD_bad_bad"}));
+//
+//        System.out.println(largerstString( new String[]{"SDF","DF"}));
+//        System.out.println(swap());
     }
 
     public  static String possibleExeption(int number) throws ExpetionClass {
@@ -379,6 +381,52 @@ public class Main2 {
             return count;
 
         }
+    public  static List<List<String>> groupAnagrams(String[] strs) {
+        Map<String, List<String>> map = new HashMap<>();
+        List<String> sa = new ArrayList<>();
+        for (String str : strs) {
+            char[] chars = str.toCharArray();
+            Arrays.sort(chars);
+            String key = String.valueOf(chars);
+
+            map.putIfAbsent(key, new ArrayList<>());
+            map.get(key).add(str);
+        }
+        for(var entry: map.entrySet()) sa.add(entry.getValue().toString());
+
+
+
+
+        return new ArrayList<>(map.values());
+    }
+
+    public static int compress(char[] chars) {
+        int write = 0; // position to write in the array
+        int i = 0;     // read pointer
+
+        while (i < chars.length) {
+            char currentChar = chars[i];
+            int count = 0;
+
+            // Count consecutive occurrences
+            while (i < chars.length && chars[i] == currentChar) {
+                i++;
+                count++;
+            }
+
+            // Write the character
+            chars[write++] = currentChar;
+
+            // If count > 1, write the digits of the count
+            if (count > 1) {
+                for (char c : String.valueOf(count).toCharArray()) {
+                    chars[write++] = c;
+                }
+            }
+        }
+
+        return write; // new length of compressed array
+    }
 
 
 
