@@ -1,13 +1,18 @@
 package org.example;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Main2 {
 
     private static ExpetionClass expetionClass;
+    public static Util util;
 
     static Map<String, Long> orders = new ConcurrentHashMap<>();
 
@@ -23,11 +28,16 @@ public class Main2 {
     public static void main(String [] args) throws ExpetionClass, InterruptedException {
 
 
+
         //System.out.println(possibleExeption(-1));
 //        System.out.println(secondNonRepited("asswsdff"));
-     System.out.println(groupAnagrams(new String[]{"eat", "tea", "tan", "ate", "nat", "bat"}));
+//     System.out.println(groupAnagrams(new String[]{"eat", "tea", "tan", "ate", "nat", "bat"}));
 //        System.out.println(compress(new char[]{'a', 'a', 'b', 'b', 'c', 'c', 'c'}));
-
+//        System.out.println(maxProfit(new int[]{7, 1, 4, 5,3,2}));
+ //        System.out.println(max());
+ //        System.out.println(lengthOfLongestSubstring1("abcbbcbb"));
+//         System.out.println(Arrays.toString(productExceptSelf(new int[]{2, 3, 4, 5})));
+//        System.out.println(maxAmountOfNumberFound(new int[]{7,7, 1, 4, 5,3,2}));
         int nbPersons = 3;
 
         List<String> ingredients = Arrays.asList(
@@ -66,7 +76,13 @@ public class Main2 {
 
 
 //        }
-//        System.out.println(isArmstrong(12));
+/*       System.out.println(isArmstrong(153));
+       System.out.println(maximum("yuiopphh"));
+       System.out.println(anInt(new int[]{23,23,4,6}));*/
+       System.out.println(anInt(new int[]{23,23,4,6}));
+       System.out.println( mostCommonFirstLetter(Util.Result()));
+        slidingWindowAverage();
+
 
        int[] nums = {2, 7, 11, 15};
        int target = 9;
@@ -239,7 +255,7 @@ public class Main2 {
     }
 
     public static boolean isArmstrong(int num) {
-        int original = num;
+         int original = num;
         int sum = 0;
 
         // Step 1: count digits
@@ -399,33 +415,93 @@ public class Main2 {
 
         return new ArrayList<>(map.values());
     }
+    public static int compress(char[] chars){
+        int i = 0;
+        int writer = 0;
+                while(i < chars.length){
 
-    public static int compress(char[] chars) {
-        int write = 0; // position to write in the array
-        int i = 0;     // read pointer
+                    char currentChar = chars[i];
 
-        while (i < chars.length) {
-            char currentChar = chars[i];
-            int count = 0;
+                    int count = 0;
+                    while(i < chars.length && currentChar == chars[i]){
 
-            // Count consecutive occurrences
-            while (i < chars.length && chars[i] == currentChar) {
-                i++;
-                count++;
-            }
+                        count ++;
+                        i++;
 
-            // Write the character
-            chars[write++] = currentChar;
 
-            // If count > 1, write the digits of the count
-            if (count > 1) {
-                for (char c : String.valueOf(count).toCharArray()) {
-                    chars[write++] = c;
+                    }
+                    chars[writer++] = currentChar;
+
+                    if(count > 1){
+
+                        for(var c : String.valueOf(count).toCharArray())
+                            chars[writer++] = c;
+
+                    }
+
+
                 }
-            }
-        }
 
-        return write; // new length of compressed array
+
+              return writer;
+
+
+    }
+
+    public static Map.Entry<Character, Long> maximum(String word){
+
+
+
+        return  word.chars().mapToObj(z -> (char) z).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().stream().skip(1).max(Map.Entry.comparingByValue()).orElse(new AbstractMap.SimpleEntry<>('g', 3L));
+
+
+    }
+
+    public boolean palidrom(String word1){
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append(word1);
+
+        return stringBuilder.reverse().toString().equals(word1);
+
+
+    }
+
+    public static String anInt(int [] nums){
+
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for(var num : nums)
+            map.put(num, map.getOrDefault(num,0)+ 1);
+        Map.Entry<Integer, Integer> integerIntegerEntry = map.entrySet().stream().max(Map.Entry.comparingByValue()).orElse(new AbstractMap.SimpleEntry<>(23, 3));
+
+        return "Number" + integerIntegerEntry.getKey() + "times" + integerIntegerEntry.getValue();
+    }
+
+
+    public static String mostCommonFirstLetter(List<Employee> employeeList){
+
+        Map.Entry<Character, Long> a = employeeList.stream().map(employee -> employee.getName().charAt(0))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().stream().max(Map.Entry.comparingByValue()).orElse(new AbstractMap.SimpleEntry<>('a', 3L));
+        return "letter: " + a.getKey() + " times: " + a.getValue();
+
+    }
+    public static void slidingWindowAverage(){
+
+        int window = 3;
+        List<Integer> input = Util.Result1();
+        List<Double> list = IntStream.range(0, (input.size() - (window - 1)))
+                .mapToObj(i -> input.subList(i, i + window))
+                .map(w -> w.stream()
+                        .mapToInt(Integer::intValue)
+                        .average()
+                        .orElse(0.0)
+                ).toList();
+        System.out.println(list);
+
     }
 
 
@@ -435,7 +511,8 @@ public class Main2 {
 
 
 
-    }
+
+}
 
 
 
