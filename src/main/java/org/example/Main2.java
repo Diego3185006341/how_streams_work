@@ -82,8 +82,8 @@ public class Main2 {
        System.out.println(anInt(new int[]{23,23,4,6}));
        System.out.println( mostCommonFirstLetter(Util.Result()));
         slidingWindowAverage();
-
-
+        System.out.println(longestWordFinder("The quick, brown fox jumped over the lazy dog!"));
+        mostFrequentWord();
        int[] nums = {2, 7, 11, 15};
        int target = 9;
 //      System.out.println(Arrays.toString(twoSum(nums, target)));
@@ -220,6 +220,7 @@ public class Main2 {
 
         for (String word : words.split("\\W+"))
             map.put(word, map.getOrDefault( word, 0)+ 1);
+           String s = map.keySet().stream().max(Comparator.comparing(String::length)).orElse("#");
 
         return map;
     }
@@ -501,6 +502,35 @@ public class Main2 {
                         .orElse(0.0)
                 ).toList();
         System.out.println(list);
+
+    }
+
+    public static String longestWordFinder(String word){
+
+
+        return Arrays.stream(word.toLowerCase().split("\\W+"))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .keySet().stream().max(Comparator.comparing(String::length))
+                .orElse("");
+
+
+
+    }
+
+    public static void mostFrequentWord(){
+
+        String words = "Java is the best nothing like Java, is Object oriented and the funniest thing is easy";
+        Map<String, Long> map = new HashMap<>();
+        for(String word : words.split("\\W+")){
+            map.put(word, map.getOrDefault(word, 0L) + 1);
+        }
+        List<Map.Entry<String, Long>> list = map.entrySet().stream().sorted(Map.Entry.<String, Long>comparingByValue().reversed())
+                .limit(3).toList();
+
+        System.out.println(list);
+        list.forEach( e -> {
+            System.out.print( " word: " + e.getKey() + " times: " + e.getValue());
+        });
 
     }
 
