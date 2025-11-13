@@ -79,10 +79,12 @@ public class Main2 {
 /*       System.out.println(isArmstrong(153));
        System.out.println(maximum("yuiopphh"));
        System.out.println(anInt(new int[]{23,23,4,6}));*/
-       System.out.println(anInt(new int[]{23,23,4,6}));
+/*       System.out.println(anInt(new int[]{23,23,4,6}));
        System.out.println( mostCommonFirstLetter(Util.Result()));
         slidingWindowAverage();
-        System.out.println(longestWordFinder("The quick, brown fox jumped over the lazy dog!"));
+        System.out.println(longestWordFinder("The quick, brown fox jumped over the lazy dog!"));*/
+        System.out.println(lengthOfTheLongestSubstring("abcdadcb"));
+        System.out.println(isValid("()"));
         mostFrequentWord();
        int[] nums = {2, 7, 11, 15};
        int target = 9;
@@ -527,12 +529,57 @@ public class Main2 {
         List<Map.Entry<String, Long>> list = map.entrySet().stream().sorted(Map.Entry.<String, Long>comparingByValue().reversed())
                 .limit(3).toList();
 
-        System.out.println(list);
         list.forEach( e -> {
             System.out.print( " word: " + e.getKey() + " times: " + e.getValue());
         });
 
     }
+    public static int lengthOfTheLongestSubstring(String word){
+
+        Set<Character>set = new HashSet<>();
+        int left = 0, maxLength = 0;
+
+        for (int right = 0; right < word.length(); right++) {
+
+            char c = word.charAt(right);
+            while (set.contains(c)) {
+
+
+                    set.remove(word.charAt(left));
+                    left++;
+
+
+            }
+            set.add(c);
+            maxLength = Math.max(maxLength, right - left + 1);
+
+
+        }
+        return maxLength;
+
+
+
+    }
+    public static boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+
+        for (char c : s.toCharArray()) {
+            if (c == '(' || c == '{' || c == '[') {
+                stack.push(c);
+            } else {
+                if (stack.isEmpty()) return false;
+                char top = stack.pop();
+                if ((c == ')' && top != '(') ||
+                        (c == '}' && top != '{') ||
+                        (c == ']' && top != '[')) {
+                    return false;
+                }
+            }
+        }
+
+        return stack.isEmpty();
+    }
+
 
 
 
