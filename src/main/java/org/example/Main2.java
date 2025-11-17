@@ -529,9 +529,7 @@ public class Main2 {
         List<Map.Entry<String, Long>> list = map.entrySet().stream().sorted(Map.Entry.<String, Long>comparingByValue().reversed())
                 .limit(3).toList();
 
-        list.forEach( e -> {
-            System.out.print( " word: " + e.getKey() + " times: " + e.getValue());
-        });
+        list.forEach( e -> System.out.print( " word: " + e.getKey() + " times: " + e.getValue()));
 
     }
     public static int lengthOfTheLongestSubstring(String word){
