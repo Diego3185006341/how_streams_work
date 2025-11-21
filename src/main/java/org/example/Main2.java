@@ -83,9 +83,9 @@ public class Main2 {
        System.out.println( mostCommonFirstLetter(Util.Result()));
         slidingWindowAverage();
         System.out.println(longestWordFinder("The quick, brown fox jumped over the lazy dog!"));*/
-        System.out.println(lengthOfTheLongestSubstring("abcdadcb"));
+/*        System.out.println(lengthOfTheLongestSubstring("abcdadcb"));
         System.out.println(isValid("()"));
-        mostFrequentWord();
+        mostFrequentWord();*/
        int[] nums = {2, 7, 11, 15};
        int target = 9;
 //      System.out.println(Arrays.toString(twoSum(nums, target)));
@@ -97,9 +97,7 @@ public class Main2 {
 //      System.out.println(divisors(7));
        // int[] nums = {10, 20, 30, 40};
        // System.out.println(median(nums));
-
 //        System.out.println(howManyWords(2,"bad", new String[]{"The_video_is_BAD", "BAD_bad_bad"}));
-//
 //        System.out.println(largerstString( new String[]{"SDF","DF"}));
 //        System.out.println(swap());
     }
